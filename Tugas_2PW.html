@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulir</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif; color: #798064;
+            background-color: #CCD5AE;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #FEFAE0;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+
+        h2 {
+            text-align: center;
+        }
+
+        label {
+            display: block;
+            margin-top: 10px;
+            font-weight: bold;
+        }
+
+        input, textarea {
+            width: 96%;
+            padding: 10px;
+            margin-top: 5px;
+            border: 1px solid #FEFAE0;
+            border-radius: 4px;
+        }
+
+        textarea {
+            height: 80px;
+        }
+
+        button {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            background-color: #CCD5AE;
+            color: #FAEDCE;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-top: 15px;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        .output {
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #FAEDCE;
+            border-left: 4px solid #e6ab22;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>Formulir</h2>
+    <form id="dataForm">
+        <label for="name">Nama:</label>
+        <input type="text" id="name" name="name" required>
+
+        <label for="nim">NIM:</label>
+        <input type="text" id="nim" name="nim" required>
+
+        <label for="kelas">Kelas:</label>
+        <input type="text" id="kelas" name="kelas" required>
+
+        <label for="alamat">Alamat:</label>
+        <textarea id="alamat" name="alamat" required></textarea>
+
+        <button type="submit">Submit</button>
+    </form>
+
+    <div id="output" class="output" style="display:none;">
+        <h3>Data Inputan:</h3>
+        <p><strong>Nama:</strong> <span id="outputNama"></span></p>
+        <p><strong>NIM:</strong> <span id="outputNim"></span></p>
+        <p><strong>Kelas:</strong> <span id="outputKelas"></span></p>
+        <p><strong>Alamat:</strong> <span id="outputAlamat"></span></p>
+    </div>
+</div>
+
+<script>
+    // Event DOM 1: Mencegah submit form secara default
+    document.getElementById('dataForm').addEventListener('submit', function(event) {
+        event.preventDefault();
+        displayData();
+    });
+
+    // Event DOM 2: Menangkap event keyup di input nama
+    document.getElementById('name').addEventListener('keyup', function() {
+        console.log('Nama diinput: ' + this.value);
+    });
+
+    // Event DOM 3: Mengubah warna border ketika fokus pada input
+    document.getElementById('nim').addEventListener('focus', function() {
+        this.style.borderColor = 'blue';
+    });
+
+    // Event DOM 4: Mengembalikan warna border setelah blur dari input
+    document.getElementById('nim').addEventListener('blur', function() {
+        this.style.borderColor = '#ccc';
+    });
+
+    // Event DOM 5: Menampilkan pesan alert saat textarea diklik
+    document.getElementById('alamat').addEventListener('click', function() {
+        alert('Anda mengklik area input alamat.');
+    });
+
+    // Fungsi untuk menampilkan data input ke div output
+    function displayData() {
+        var name = document.getElementById('name').value;
+        var nim = document.getElementById('nim').value;
+        var kelas = document.getElementById('kelas').value;
+        var alamat = document.getElementById('alamat').value;
+
+        document.getElementById('outputNama').textContent = name;
+        document.getElementById('outputNim').textContent = nim;
+        document.getElementById('outputKelas').textContent = kelas;
+        document.getElementById('outputAlamat').textContent = alamat;
+
+        document.getElementById('output').style.display = 'block';
+    }
+</script>
+
+</body>
+</html>
